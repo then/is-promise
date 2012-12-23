@@ -1,4 +1,4 @@
-
+<img src="http://promises-aplus.github.com/promises-spec/assets/logo-small.png" align="right" />
 # is-promise
 
   Test whether an object looks like a promises-a+ promise
