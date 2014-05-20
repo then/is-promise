@@ -3,15 +3,15 @@
 
   Test whether an object looks like a promises-a+ promise
 
+ [![Build Status](https://img.shields.io/travis/then/is-promise/master.svg)](https://travis-ci.org/then/is-promise)
+ [![Dependency Status](https://img.shields.io/gemnasium/then/is-promise.svg)](https://gemnasium.com/then/is-promise)
+ [![NPM version](https://img.shields.io/npm/v/is-promise.svg)](https://www.npmjs.org/package/is-promise)
+
 ## Installation
 
-  Client:
-
-    $ component install then/is-promise
-
-  Server:
-
     $ npm install is-promise
+
+You can also use it client side via npm.
 
 ## API
 
