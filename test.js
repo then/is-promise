@@ -14,12 +14,12 @@ describe('calling isPromise', function () {
   });
   describe('with null', function () {
     it('returns false', function () {
-      assert(!isPromise(null));
+      assert(isPromise(null) === false);
     });
   });
   describe('with undefined', function () {
     it('returns false', function () {
-      assert(!isPromise(undefined));
+      assert(isPromise(undefined) === false);
     });
   });
   describe('with a number', function () {
