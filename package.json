@@ -6,6 +6,9 @@
   "scripts": {
     "test": "mocha -R spec"
   },
+  "files": [
+    "index.js"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/then/is-promise.git"
