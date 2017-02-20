@@ -53,4 +53,12 @@ describe('calling isPromise', function () {
       assert(!isPromise([true]));
     });
   });
+  describe('with an exploding "then"', function () {
+    it('returns false', function () {
+      var exploder = {
+        get then() { throw new Error("Boom go the dynamit!"); }
+      };
+      assert(!isPromise(exploder));
+    });
+  });
 });
