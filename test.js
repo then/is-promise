@@ -53,4 +53,16 @@ describe('calling isPromise', function () {
       assert(!isPromise([true]));
     });
   });
+  describe('with a func', function () {
+    it('returns false', function () {
+      assert(!isPromise(() => {}));
+    });
+  });
+  describe('with a func with .then method', function () {
+    it('returns true', function () {
+      const fn = () => {};
+      fn.then = () => {};
+      assert(isPromise(fn));
+    });
+  });
 });
