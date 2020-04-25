@@ -2,17 +2,17 @@
   "name": "is-promise",
   "version": "2.2.0",
   "description": "Test whether an object looks like a promises-a+ promise",
-  "main": "index.js",
-  "type": "module",
+  "main": "./index.js",
   "exports": {
-    "import": "index.mjs",
-    "require": "index.js"
+    "import": "./index.mjs",
+    "require": "./index.js"
   },
   "scripts": {
     "test": "mocha -R spec"
   },
   "files": [
-    "index.js"
+    "index.js",
+    "index.mjs"
   ],
   "repository": {
     "type": "git",
