@@ -1,6 +1,6 @@
 {
   "name": "is-promise",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Test whether an object looks like a promises-a+ promise",
   "main": "./index.js",
   "exports": {
