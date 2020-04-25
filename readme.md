@@ -18,9 +18,10 @@ You can also use it client side via npm.
 
 ## API
 
-```javascript
-var isPromise = require('is-promise');
+```typescript
+import isPromise from 'is-promise';
 
+isPromise(Promise.resolve());//=>true
 isPromise({then:function () {...}});//=>true
 isPromise(null);//=>false
 isPromise({});//=>false
