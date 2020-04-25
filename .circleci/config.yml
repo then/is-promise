@@ -1,0 +1,150 @@
+version: 2.1
+
+refs:
+  - &only_master
+    filters:
+      branches:
+        only: master
+
+  - &not_master
+    filters:
+      branches:
+        ignore: master
+
+workflows:
+  test:
+    jobs:
+      - unit-tests:
+          <<: *not_master
+          name: node-6
+          version: '6'
+      - unit-tests:
+          <<: *not_master
+          name: node-8
+          version: '8'
+      - unit-tests:
+          <<: *not_master
+          name: node-10
+          version: '10'
+      - unit-tests:
+          <<: *not_master
+          name: node-12
+          version: '12'
+      - unit-tests:
+          <<: *not_master
+          name: node-14
+          version: '14'
+
+  release:
+    jobs:
+      - unit-tests:
+          <<: *only_master
+          name: node-6
+          version: '6'
+      - unit-tests:
+          <<: *only_master
+          name: node-8
+          version: '8'
+      - unit-tests:
+          <<: *only_master
+          name: node-10
+          version: '10'
+      - unit-tests:
+          <<: *only_master
+          name: node-12
+          version: '12'
+      - unit-tests:
+          <<: *only_master
+          name: node-14
+          version: '14'
+
+      - publish-dry-run:
+          <<: *only_master
+          context: common-env
+
+      - publish-approval:
+          type: approval
+          context: common-env
+          requires:
+            - publish-dry-run
+
+      - publish:
+          <<: *only_master
+          context: common-env
+          requires:
+            - node-6
+            - node-8
+            - node-10
+            - node-12
+            - node-14
+            - publish-approval
+
+jobs:
+  unit-tests:
+    parameters:
+      version:
+        type: string
+    docker:
+      - image: circleci/node:<< parameters.version >>
+    steps:
+      - setup
+      - test
+
+  publish-dry-run:
+    docker:
+      - image: circleci/node:12
+    steps:
+      - setup
+      - publish-dry-run
+
+  publish:
+    docker:
+      - image: circleci/node:12
+    steps:
+      - setup
+      - publish
+
+commands:
+  setup:
+    description: 'Checkout and install dependencies'
+    steps:
+      - checkout
+      - run:
+          name: Versions
+          command: node -v && npm -v
+      - run:
+          name: Install Dependencies
+          command: npm i
+
+  test:
+    steps:
+      - run:
+          name: Test
+          command: npm test
+      - run:
+          name: Pack
+          command: npm pack
+      - run:
+          name: Setup Import Test
+          command: echo $PWD && cd .. && mkdir test-import && cp -a project/test-import/ test-import/test-import/ && cd test-import && npm init -y && npm i ../project/is-promise-2.2.2.tgz
+      - run:
+          name: Test Import
+          command: cd ../test-import && node test-import/test.js
+
+  publish-dry-run:
+    steps:
+      - run:
+          name: NPM Auth
+          command: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+      - run:
+          name: Release (Dry Run)
+          command: npx rollingversions publish --dry-run
+
+  publish:
+    steps:
+      - run:
+          name: NPM Auth
+          command: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+      - run:
+          name: Release
+          command: npx rollingversions publish

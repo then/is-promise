@@ -1,5 +1,5 @@
-var assert = require('assert');
-var isPromise = require('./');
+import assert from 'assert';
+import isPromise from 'is-promise';
 
 
 assert(isPromise(null) === false);
@@ -27,4 +27,4 @@ const fn = () => {};
 fn.then = () => {};
 assert(isPromise(fn) === true);
 
-console.log('tests passed')
+console.log('ES Modules tests passed')
