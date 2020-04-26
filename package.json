@@ -11,8 +11,14 @@
     "index.mjs"
   ],
   "exports": {
-    "import": "./index.mjs",
-    "require": "./index.js"
+    ".": [
+      {
+        "import": "./index.mjs",
+        "require": "./index.js",
+        "default": "./index.js"
+      },
+      "./index.js",
+    ]
   },
   "repository": {
     "type": "git",
