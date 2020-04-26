@@ -60,17 +60,14 @@ workflows:
 
       - publish-dry-run:
           <<: *only_master
-          context: common-env
 
       - publish-approval:
           type: approval
-          context: common-env
           requires:
             - publish-dry-run
 
       - publish:
           <<: *only_master
-          context: common-env
           requires:
             - node-6
             - node-8
