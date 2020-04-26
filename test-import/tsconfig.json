@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "skipLibCheck": false,
+    "strict": true
+  }
+}

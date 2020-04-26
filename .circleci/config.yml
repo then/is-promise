@@ -123,10 +123,10 @@ commands:
           command: npm pack
       - run:
           name: Setup Import Test
-          command: echo $PWD && cd .. && mkdir test-import && cp -a project/test-import/ test-import/test-import/ && cd test-import && npm init -y && npm i ../project/is-promise-2.2.2.tgz
+          command: echo $PWD && cd .. && cp -a project/test-import/ test-import/ && cd test-import && npm i && npm i ../project/is-promise-2.2.2.tgz
       - run:
           name: Test Import
-          command: cd ../test-import && node test-import/test.js
+          command: cd ../test-import && npm test
 
   publish-dry-run:
     steps:
