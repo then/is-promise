@@ -1,6 +1,11 @@
 var assert = require('assert');
 var isPromise = require('./');
 
+// `.then` methods on primative types should
+// not make them count as promises
+String.prototype.then = () => {};
+Number.prototype.then = () => {};
+Boolean.prototype.then = () => {};
 
 assert(isPromise(null) === false);
 assert(isPromise(undefined) === false);
