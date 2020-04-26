@@ -35,7 +35,7 @@ if(parseInt(process.version.split('.')[0].substr(1), 10) >= 14) {
 }
 
 if(parseInt(process.version.split('.')[0].substr(1), 10) >= 12) {
-  const result = require('child_process').spawnSync(require.resolve('.bin/tsc'), ['index.ts'], {cwd: __dirname, stdio: 'inherit'});
+  const result = require('child_process').spawnSync('npx', ['typescript', 'index.ts'], {cwd: __dirname, stdio: 'inherit'});
   if (result.status) process.exit(result.status);
   console.log('TypeScript tests passed');
 }

@@ -6,7 +6,6 @@
     "test": "node test"
   },
   "dependencies": {
-    "type-assertions": "^1.1.0",
-    "typescript": "*"
+    "type-assertions": "^1.1.0"
   }
 }
