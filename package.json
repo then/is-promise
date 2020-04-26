@@ -17,7 +17,7 @@
         "require": "./index.js",
         "default": "./index.js"
       },
-      "./index.js",
+      "./index.js"
     ]
   },
   "repository": {
