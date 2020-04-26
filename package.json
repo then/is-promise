@@ -1,10 +1,10 @@
 {
   "name": "is-promise",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "description": "Test whether an object looks like a promises-a+ promise",
   "main": "./index.js",
   "scripts": {
-    "test": "mocha -R spec"
+    "test": "mocha"
   },
   "files": [
     "index.js",
@@ -17,7 +17,6 @@
   "author": "ForbesLindesay",
   "license": "MIT",
   "devDependencies": {
-    "better-assert": "^1.0.2",
-    "mocha": "~1.7.4"
+    "mocha": "^7.1.1"
   }
 }
