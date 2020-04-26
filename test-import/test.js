@@ -1,5 +1,5 @@
 var assert = require('assert');
-var isPromise = require('./');
+var isPromise = require('is-promise');
 
 
 assert(isPromise(null) === false);
@@ -27,4 +27,9 @@ const fn = () => {};
 fn.then = () => {};
 assert(isPromise(fn) === true);
 
-console.log('tests passed')
+console.log('CommonJS tests passed')
+
+if(parseInt(process.version.split('.')[0].substr(1), 10) >= 14) {
+  const result = require('child_process').spawnSync('node', ['test.mjs'], {cwd: __dirname, stdio: 'inherit'});
+  process.exit(result.status);
+}
