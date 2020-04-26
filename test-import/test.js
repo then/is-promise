@@ -31,5 +31,11 @@ console.log('CommonJS tests passed')
 
 if(parseInt(process.version.split('.')[0].substr(1), 10) >= 14) {
   const result = require('child_process').spawnSync('node', ['test.mjs'], {cwd: __dirname, stdio: 'inherit'});
-  process.exit(result.status);
+  if (result.status) process.exit(result.status);
+}
+
+if(parseInt(process.version.split('.')[0].substr(1), 10) >= 12) {
+  const result = require('child_process').spawnSync(require.resolve('.bin/tsc'), ['index.ts'], {cwd: __dirname, stdio: 'inherit'});
+  if (result.status) process.exit(result.status);
+  console.log('TypeScript tests passed');
 }
