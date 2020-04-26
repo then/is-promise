@@ -1,5 +1,5 @@
 import * as ta from 'type-assertions';
-import isPromise from '../';
+import isPromise from 'is-promise';
 
 declare const x: number | Promise<string>;
 if (isPromise(x)) {
