@@ -3,6 +3,10 @@
   "private": true,
   "@rollingversions/ignore": true,
   "scripts": {
-    "test": "node test"
+    "test": "node test && npx tsc --noEmit index.ts "
+  },
+  "dependencies": {
+    "type-assertions": "^1.1.0",
+    "typescript": "*"
   }
 }
