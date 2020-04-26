@@ -10,6 +10,10 @@
     "index.js",
     "index.mjs"
   ],
+  "exports": {
+    "import": "./index.mjs",
+    "require": "./index.js"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/then/is-promise.git"
