@@ -1,68 +1,68 @@
-var isPromise = require('./');
-var assert = require('better-assert');
+const assert = require('assert');
+const isPromise = require('./');
 
 // This looks similar enough to a promise
 // that promises/A+ says we should treat
 // it as a promise.
-var promise = {then: function () {}};
+const thenableObj = { then: () => {} };
+const thenableFunc = () => {};
+thenableFunc.then = () => {};
 
-describe('calling isPromise', function () {
-  describe('with a promise', function () {
-    it('returns true', function () {
-      assert(isPromise(promise));
+const assertTrue = (val) => {
+  assert.strictEqual(isPromise(val), true);
+};
+
+const assertFalse = (val) => {
+  assert.strictEqual(isPromise(val), false);
+};
+
+describe('calling isPromise()', () => {
+  describe('returns false when given', () => {
+    it('null', () => {
+      assertFalse(null);
+    });
+    it('undefined', () => {
+      assertFalse(undefined);
+    });
+    it('numbers', () => {
+      assertFalse(0);
+      assertFalse(-42);
+      assertFalse(42);
+    });
+    it('strings', () => {
+      assertFalse('');
+      assertFalse('then');
+    });
+    it('booleans', () => {
+      assertFalse(false);
+      assertFalse(true);
+    });
+    it('a object without a .then() method', () => {
+      assertFalse({});
+      assertFalse({ then: true });
+    });
+    it('with an array', () => {
+      assertFalse([]);
+      assertFalse([true]);
+    });
+    it('a function without a .then() method', () => {
+      const fn = () => { };
+
+      assertFalse(fn);
     });
   });
-  describe('with null', function () {
-    it('returns false', function () {
-      assert(isPromise(null) === false);
+  describe('returns true when given', () => {
+    it('a promise', () => {
+      assertTrue(new Promise(()=>{}));
     });
-  });
-  describe('with undefined', function () {
-    it('returns false', function () {
-      assert(isPromise(undefined) === false);
+    it('a resolved promise', () => {
+      assertTrue(Promise.resolve());
     });
-  });
-  describe('with a number', function () {
-    it('returns false', function () {
-      assert(!isPromise(0));
-      assert(!isPromise(-42));
-      assert(!isPromise(42));
+    it('a object with a .then() method', () => {
+      assertTrue(thenableObj);
     });
-  });
-  describe('with a string', function () {
-    it('returns false', function () {
-      assert(!isPromise(''));
-      assert(!isPromise('then'));
-    });
-  });
-  describe('with a bool', function () {
-    it('returns false', function () {
-      assert(!isPromise(false));
-      assert(!isPromise(true));
-    });
-  });
-  describe('with an object', function () {
-    it('returns false', function () {
-      assert(!isPromise({}));
-      assert(!isPromise({then: true}));
-    });
-  });
-  describe('with an array', function () {
-    it('returns false', function () {
-      assert(!isPromise([]));
-      assert(!isPromise([true]));
-    });
-  });
-  describe('with a func', function () {
-    it('returns false', function () {
-      assert(!isPromise(() => {}));
-    });
-  });
-  describe('with a func with .then method', function () {
-    it('returns true', function () {
-      const fn = () => {};
-      fn.then = () => {};
-      assert(isPromise(fn));
+    it('a function with a .then() method', () => {
+      assertTrue(thenableFunc);
     });
   });
 });
