@@ -1,0 +1,8 @@
+{
+  "name": "is-promise-test-import",
+  "private": true,
+  "@rollingversions/ignore": true,
+  "scripts": {
+    "test": "node test"
+  }
+}
