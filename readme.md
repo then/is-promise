@@ -21,11 +21,11 @@ You can also use it client side via npm.
 ```typescript
 import isPromise from 'is-promise';
 
-isPromise(Promise.resolve());//=>true
-isPromise({then:function () {...}});//=>true
-isPromise(null);//=>false
-isPromise({});//=>false
-isPromise({then: true})//=>false
+isPromise(Promise.resolve()); //=>true
+isPromise({ then:function () { ... } }); //=>true
+isPromise(null); //=>false
+isPromise({}); //=>false
+isPromise({ then: true }); //=>false
 ```
 
 ## License
