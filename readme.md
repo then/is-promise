@@ -4,9 +4,8 @@
 
   Test whether an object looks like a promises-a+ promise
 
- [![Build Status](https://img.shields.io/travis/then/is-promise/master.svg)](https://travis-ci.org/then/is-promise)
- [![Dependency Status](https://img.shields.io/david/then/is-promise.svg)](https://david-dm.org/then/is-promise)
- [![NPM version](https://img.shields.io/npm/v/is-promise.svg)](https://www.npmjs.org/package/is-promise)
+ [![Build Status](https://img.shields.io/circleci/build/github/then/is-promise/master?style=for-the-badge)](https://app.circleci.com/pipelines/github/then/is-promise)
+ [![NPM version](https://img.shields.io/npm/v/is-promise.svg?style=for-the-badge)](https://www.npmjs.org/package/is-promise)
 
 
 
